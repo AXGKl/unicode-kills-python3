@@ -1,3 +1,5 @@
+## About the Unicode Sandwich ##
+
 Sorry, minirant follows, this misconception is driving me nuts.
 
 This 'unicode sandwich' paradigm, which you can't avoid without getting crazy
