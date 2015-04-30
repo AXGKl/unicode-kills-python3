@@ -1,4 +1,6 @@
-# unicode-kills-python3
+# Python2 With A Working DefaultEncoding: An Ideal World
+
+
 Arguments For Py2 DefaultEncoding UTF-8 and Against the Py3 Paradigm That Text Equals Unicode
 
 
@@ -283,6 +285,319 @@ Quite understandable - at _that_ time.
 
 ![lbbrown][linebreakbrown]
 
+*Following up the previous analysis of the chasm between endusers and core developers incl. reasons, lets go through alternatives and practical recommendations now*
+
+
+## SetDefaultEncoding=UTF-8: Assessment of Alternatives ##
+
+End users, when facing crashes due to Python2's default refusal to implicitly convert bytes to and from unicode, are educated either to 
+
+ A) explicitly code each and any necessary type conversion
+
+ B) convert to unicode each and every bytestring right at ingress ('[unicode sandwich][unipain]'), often connected with a hint to migrate to [Python3][bugsto3] right [away][guidoenv], where the APIs' native string class resembles Py2's unicode type. 
+
+
+*This section tries to create understanding why this is _NOT_ a sensible option for a large group of users.*
+
+
+### The "[Unicode Sandwich][unipain]" - A Fit For _Any_ Use Case? ###
+
+Definitely: No, not at all. And thats a fact of life:
+
+It is natural to develop code with a 'sandwich' model in mind, restricting en/decodings to 'boundaries' - to /from other libraries or the outside world.
+Thats a "no brainer" and not a revelation.
+
+Not at all natural it is to derive from this, that the 'meat' in the sandwich MUST be unicode under all circumstances and NOT byte strings.
+
+**Novices** in Py2 start with juggling bytestrings around and they get a long long way with this, longer than in a unicode sandwich where their first piped non ascii print out crashes with funny error messages.  
+
+Also quite some undisputed Python **Experts** seem to prefer to work with bytestrings. Most prominent [Armin Ronacher][armin_1], the whole Zope/Plone community is another, [Mercurial][mercurial] another. Even Ned Batchelder [does face situations][ned]...
+
+I'm NOT an expert - but the Python servers my company sells get bombarded by mgmt. stacks of currently some 30 million little devices around the globe. It would be just plain *wrong* to convert all that traffic to and from unicode before/after consolidating it, given "advantages" like...
+
+    >>> RAM, unic = sys.getsizeof, u' ' * 100000
+    >>> round(float(RAM(unic)) / RAM(str(unic)), 2)
+    4.0
+    
+ ... and none of the data consolidation routines require a single unicode function.
+
+Wrong!! This code is misleading - the unicode sandwich proponent claims: We live in a 'global' world and this example is not: Beyond ASCII the factor shrinks to 'only' a 2 or even less. And what has data consolidation to do with string types?
+
+Addressing a major misconception:
+
+**The near irrelevancy of unicode in GLOBAL communication standards and protocols**
+
+*While unicode maps the BIGGEST POSSIBLE set of meaningful information for inter HUMAN communication, those define the smallest necessary one for inter SYSTEMS communication.*
+
+When you check any explanation of the [OSI][osi] model, you'll find that the word 'unicode' appears maximum once - as [_one_][uni2] possibility of payload encoding on the representation layer, from code points to displayed symbols. Not more - not less.
+
+I explained already in the previous post, that any _other_ type of information is standardized via positional values or using ASCII identifier / value pairs - a perfect fit for Pythons' outstanding lists and maps.
+
+And with more and more bandwidth available, higher level protocols did get also really verbose regarding identifiers - what was standardized 30 years ago with identifiers like this: 
+
+    .1.3.6.1.2.1.2.2.1.8 # mapping to: .iso.org.dod.internet.mgmt.mib-2.interfaces.ifTable.ifEntry.ifOperStatus
+
+today goes through the Internet comparable to this: 
+
+![stb][stbtr]
+
+
+ - There is *a lot* of information to be processed by software and only a tiny subset is for humans. 
+
+ - Unicode has zero relevance for inter systems communication: Those act based on bits, bytes, ASCII character identifiers (Identifiers within global standards _never_ go beyond ASCII words to encode information - by definition).
+
+ - Python is ideally suited to process information directly - or control HOW the direct processing should work.
+
+
+
+[Again](http://mike.passwall.com/networking/netmodels/isoosi7layermodel.html#PRE):
+
+*The theory and idea behind having standards accepted, ratified, and agreed upon by nations around the world, is to ensure that the system from Country A will be easily integrated with the system from Country B with little effort.*
+
+=> Writing software to enable *truly global* communication means writing software which can process bits, bytes, ASCII identifiers - but in no way does it mean to decode any string of information as if it was intended for humans.
+
+
+Since the advent of Py3, the Python core community, as it seems to me, recognizes only undecoded binary data versus 'text' - which must be processed via a unicode API and [they know it][nick]:
+
+"*What we broke is a very specific thing: many of the previously idiomatic techniques for transparently accepting both Unicode text and text in an ASCII compatible binary encoding no longer work in Python 3.*" - with the argument: 
+
+"*assuming that binary data uses an ASCII compatible encoding and manipulating it accordingly can lead to silent data corruption if the assumption is incorrect.*"
+
+This does not happen. Nothing is to be assumed. One can 100% rely on the **identifiers** to be 'stateless' ASCII. The Microsoft caused mistake of storing (human text) byte values, without a positional or identifier based encoding type value, was a major engineering mistake - which could cause so much trouble only because of an exceptional situation: The change into the information age as such, with a vacuum of standards in the domain of text processing.
+
+---
+
+Identifiers have to be 'understood' by the processing software, sliced and diced, hased, compared, concatenated, logged, alerted (...). They are always max. ASCII, if present at all. Values, if not numbers, are typically forwarded to the next layer, which is, maybe a human.
+
+Systems software, when running operations like len() on such opaque values are interested for sure only in the number of bytes those values occupy in the RAM or on the socket - but mostly *not* on the potentially human perceivable symbols. And if so: There are great unicode functions available in the most simple 'pythonic' way. 
+
+
+
+If it is still not yet 100% understood why so many ASCII strings have to be processed by the software of this world, with an ideal fit of the Python2 byte str() type: [Here](http://t.co/6ksmZDd4jG) is an example, relevant also for a standard we *all* know well: HTTP. Should they, just to cut the "X-" off 100% guaranteed ASCII header keys, converting them all to unicode first?
+
+**JSON**
+
+Isnt' this a standard allowing unicode identifiers?
+No. Json is not a communication standard but a transfer protocol. The simple reason why its identifiers (and values) are unicode has a simple reason: In its beginning, Javascript was created to improve human perception of otherwise static HTML. Thats why it is based on unicode and that property got than also the property of their data exchange format with the servers, with the advent of Web 2.0. Yes, it theoretically does allow non ASCII identifiers but, with maybe the exception of your local Pizza delivery services's Rest interface - this has nothing to do with global communication standards.
+
+Its main success factor: The possibility of nesting structures, with extensible keysets. The keys themselves, in standards based on json are always ASCII (i.e. same bytes as Unicode).  
+
+Nevertheless, in the upcoming times of interconnected microservices, based on Json as its lingua franca, sometimes unicode values happen to diffuse into byte sandwich based software.
+
+*Which is a good example of the usefulness of a UTF-8 based defaultencoding.*
+
+
+--- 
+
+Closing this section I want to remind the reader that the Python3 choice of a unicode based native str type was for sure influenced by the social network hype at that time, connecting humans closer with each other than ever before. That might have influenced them a lot, besides the then perceived problems with code pages, 2 byte encodings, and so on - with unicode as the only rescue.
+
+But times have changed a lot: Encodings are by default reliably at hand and the era which is just starting off is this: **[Internet of Things](https://www.google.com/search?q=Internet+of+Things&ie=utf-8&oe=utf-8&gws_rd=cr&ei=7Gs5VafIF4LXapiJgaAG)**.
+
+Those interconnected things do not sense and act based on unicode text but on ASCII identifier based or positional information exchange protocols.
+
+
+That in turn, to stay within the picture, lets unicode sandwiches taste a little ... rotten - compared to a byte string sandwich with a UTF-8 based default encoding for normally anyway opaque values. 
+
+And there is **a lot** dynamic business logic involved within that area - and this is where Python really really shines, especially when defining that logic together with domain specific experts - see also the next point. 
+
+**Lets hope the recent good news about 3.5 do mean that Python gets back to were it already was with version 2 & and a decent default encoding: A perfect language to parse and process the [communication standards][rfcs] of this world.**
+
+
+![lbbrown][linebreakbrown]
+
+### Are Explict Manual Conversions What _Python_ Users Expect? ###
+
+Zen of Python rule "Explicit is better than implicit" is quoted, when hinting users to solve all problems themselves, instead of letting the interpreter do it, by changing the default encoding.
+
+
+This is obviously completely infeasible, if the problems an end user is trying to solve are happening in code outside his control, which is often the case, alone due to versioning or know how constraints but lets ignore this for now.
+
+Yes, feasible. And for library writers a MUST - I expect the libs I use to have gotten their encodings in order.
+
+But how about _endusers_ especially those in the industry, with its often insane time constraints?
+
+Even IF the user got all explicit string type conversions right internally - can he be sure about
+
+  - really all third party libs imported?
+  - code from colleagues, customers, partners?
+
+Did he carefully check the _return types_ of all third party libs in use? Many accept both types at ingress but deliver only one at egress, some's egress depends on type of ingress. All potential combinations included in tests? 
+
+*Note: The risk to overlook / undertest missing explicit conversions is higher(!) in English speaking countries, with human I/O often ASCII only - by pure "luck"* 
+
+Tip for all users who decide to go this path: Besides stuffing non ASCII data into unit tests, wherever the use case involves data potentially from and for humans, I recommend also to set the default encoding, while testing, to [this codec][ascic] and check the warnings...
+
+--- 
+
+*Some users don't want this, even if they could - [Java][java] is then the better language, yet [more explicit][java]*
+
+[Here is a good read][pissed] regarding how the 'do it yourself' tip is perceived by _many_ end users, incl. myself, especially after investigating about the next to zero risks of the setdefaultencoding switch. 
+
+
+Many end users like myself deliberately picked Python, since it beats any other language, regarding its low 'noise', purity and expressive power, which leads to ultimate _simplicity_, in the best possible meaning of this word (btw: there is also Zen rule number 3). 
+
+THIS is the reason why many people chose and got happy with the language, imho - for any other computing requirement there are meanwhile better suited ones.
+
+Example?
+
+Only in Python, once a fitting custom API is built within a project, you can take smart problem owners and go with them step by step through the code, finetuning what they want. It is still very satisfying to see how excited they get when they see how transparent their problems can be addressed, compared to other languages.
+
+
+We should not throw this all away, because of problems which are not present any more - and never were in most computing domains.
+
+Experts should stop irritating and alienating users when they help themselves with this simple switch, then getting a next to perfect language.
+
+I think its time to realize what we have with the Python 2 way of working with text and continue lobby for it in Py3 (there are good things [happening](https://mail.python.org/pipermail/python-dev/2014-March/133621.html) recently), using unicode 'only' as a then appreciated feature - when needed.
+But only then.   
+
+
+**import antigravity**
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+[java]: http://www.oracle.com/technetwork/articles/javase/supplementary-142654.html
+
+
+
+
+[ascic]: http://www.google.de/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&ved=0CCcQFjAA&url=http%3A%2F%2Ftwistedmatrix.com%2F~washort%2Fascii_with_complaints.py&ei=i4I5VbvcLMXVapCCgfgK&usg=AFQjCNF2JNBDxzkztGjNGnxxLHUBMdxFpQ&bvm=bv.91427555,d.d2s
+
+![lbbrown][linebreakbrown]
+
+[nick]: http://python-notes.curiousefficiency.org/en/latest/python3/binary_protocols.html
+
+
+[uni2]: http://carl.sandiego.edu/bus188/osi_model.htm
+
+[ned]: http://nedbatchelder.com/blog/201106/filenames_with_accents.html
+
+[mercurial]: https://bugs.python.org/msg199265
+
+[pissed]: http://bugs.python.org/issue1668295
+
+[bugsto3]: http://bugs.python.org/issue6832
+
+[guido_uni]: https://downloads.egenix.com/python/Unicode-EPC2002-Talk.pdf
+
+[bom]: http://en.wikipedia.org/wiki/Byte_order_mark
+
+[utf8py]: http://utf8everywhere.org/#faq.python
+
+[utf8main]: http://utf8everywhere.org/
+
+[codepages]: https://10kloc.wordpress.com/2013/08/25/plain-text-doesnt-exist-unicode-and-encodings-demystified/
+
+[gates]: http://boldomatic.com/view/post/FEiBYw
+ 
+[ansi]: http://en.wikipedia.org/wiki/ANSI_escape_code
+
+[rfcs]: http://www.ietf.org/download/rfc-index.txt
+
+[fubar]: http://www.allacronyms.com/_military/FUBAR/Fucked_Up_Beyond_Any_Recognition
+
+[osi]: http://www.webopedia.com/quick_ref/OSI_Layers.asp
+
+[bugs1]: http://bugs.python.org/issue6611
+
+[bugs2]: http://bugs.python.org/msg31343
+
+[pybugs]: http://bugs.python.org/issue?%40columns=id%2Cactivity%2Ctitle%2Ccreator%2Cassignee%2Cstatus%2Ctype&%40sort=-activity&%40filter=status&%40action=searchid&ignore=file%3Acontent&%40search_text=setdefaultencoding&submit=search&status=-1%2C1%2C2%2C3
+
+[guido1]: https://mail.python.org/pipermail/python-dev/2009-August/091362.html
+
+[guidoenv]: https://mail.python.org/pipermail/python-dev/2009-August/091418.html
+
+[loewis]: http://bugs.python.org/issue1052098#msg54297
+
+[will_break]: http://python.6.x6.nabble.com/Proposed-downstream-change-to-site-py-in-Fedora-sys-defaultencoding-tc1891360.html#a1891499
+
+[why_ascii]: http://article.gmane.org/gmane.comp.python.devel/110071
+
+[armin1]: http://lucumr.pocoo.org/2014/5/12/everything-about-unicode/
+
+[pep20]: https://www.python.org/dev/peps/pep-0020/
+
+[brandon]: https://www.youtube.com/watch?v=z9Hmys8ojno
+
+[death]: https://www.youtube.com/watch?v=LAJQOeCSs_o
+
+[loewis_evil]: https://mail.python.org/pipermail/python-dev/2009-August/091405.html
+
+[lemburg_cache]: https://mail.python.org/pipermail/python-dev/2009-August/091406.html
+
+[dive_into]: http://www.diveintopython.net/xml_processing/unicode.html
+
+[codecs]: https://docs.python.org/2/library/codecs.html#codecs.open
+
+[redis]: https://github.com/andymccurdy/redis-py/blob/2.10.2/redis/client.py#L398
+
+[unipain]: http://nedbatchelder.com/text/unipain/unipain.html#35
+
+[crawler]: https://github.com/meibenjin/GoogleSearchCrawler/blob/master/gsearch.py
+
+[noprint]: https://github.com/meibenjin/GoogleSearchCrawler/issues/3
+
+[ghglad1]: https://github.com/seecr/weightless-core/issues/2
+
+[ghglad2]: https://github.com/ajs124/autokey/issues/165
+
+[ghglad3]: https://github.com/joeyespo/grip/issues/86
+
+[holo]: https://github.com/ioam/holoviews/issues/29
+
+[laggards]: http://sealedabstract.com/rants/python-3-is-fine/
+
+[nick]: http://python-notes.curiousefficiency.org/en/latest/python3/binary_protocols.html
+
+[fedora]: 
+https://fedoraproject.org/wiki/Features/PythonEncodingUsesSystemLocale
+
+[mytable]: http://stackoverflow.com/a/29558302/4583360
+
+[fedthread]: http://thread.gmane.org/gmane.comp.python.devel/109914
+
+[fedresume]: http://article.gmane.org/gmane.comp.python.devel/109970
+
+[openhub]: http://code.openhub.net/search?s=setdefaultencoding
+
+[github]: https://github.com/search?utf8=%E2%9C%93&q=setdefaultencoding+language%3APython+utf-8&type=Code&ref=searchresults
+
+[ghissues]: https://github.com/search?l=python&o=desc&q=setdefaultencoding+language%3APython+utf-8&ref=searchresults&s=updated&type=Issues&utf8=%E2%9C%93
+
+[hgipyth]: https://github.com/ipython/ipython/pull/252
+
+[ian]: http://www.ianbicking.org/illusive-setdefaultencoding.html
+
+[fassen]: http://blog.startifact.com/posts/older/changing-the-python-default-encoding-considered-harmful.html
+
+[linebreakbrown]: http://i.stack.imgur.com/FFxEA.jpg
+
+
+[unipic]: http://i.stack.imgur.com/krQhC.png
+
+
+[stbtdr]: http://i.stack.imgur.com/4VTGj.png
+
+
+ [stbtr]: http://i.stack.imgur.com/rJyw2.png
+
+
+ [antigravity]: http://i.stack.imgur.com/vN3VT.png
 
 
 
