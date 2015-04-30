@@ -3,7 +3,7 @@
 # Python2 With A Working DefaultEncoding: We Had It All. 
 
 
-Arguments For Py2 DefaultEncoding UTF-8 and Against the Py3 Paradigm That Text Equals Unicode
+Blog: Arguments For Py2 DefaultEncoding UTF-8 and Against the Py3 Paradigm That Text Equals Unicode
 
 
 ## Cognitive Dissonance ##
