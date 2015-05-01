@@ -1,6 +1,6 @@
 *Before putting together arguments against Python3's string type, here a longish explanation why Py2's bytes str type is what we want*
 
-# Python2 With A Working DefaultEncoding: We Had It All. 
+# Python2 With A Working DefaultEncoding: We Have It All. 
 
 
 Blog: Arguments For Py2 DefaultEncoding UTF-8 and Against the Py3 Paradigm That Text Equals Unicode
