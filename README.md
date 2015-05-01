@@ -380,7 +380,9 @@ If it is still not yet 100% understood why so many ASCII strings have to be proc
 **JSON**
 
 Isnt' this a standard allowing unicode identifiers?
-No. Json is not a communication standard but a transfer protocol. The simple reason why its identifiers (and values) are unicode has a simple reason: In its beginning, Javascript was created to improve human perception of otherwise static HTML. Thats why it is based on unicode and that property got than also the property of their data exchange format with the servers, with the advent of Web 2.0. Yes, it theoretically does allow non ASCII identifiers but, with maybe the exception of your local Pizza delivery services's Rest interface - this has nothing to do with global communication standards.
+No. Json is not an application communication standard but a generic data interchange format, now an RFC https://tools.ietf.org/html/rfc4627 standardized based on a given widely used de-facto standard.
+
+The simple reason why its identifiers (and values) are unicode has a simple reason: In its beginning, Javascript was created to improve human perception of otherwise static HTML. Thats why it is based on unicode and that property got than also the property of their data exchange format with the servers, with the advent of Web 2.0. Yes, it theoretically does allow non ASCII identifiers but, with maybe the exception of your local Pizza delivery services's Rest interface - this has nothing to do with global communication standards.
 
 Its main success factor: The possibility of nesting structures, with extensible keysets. The keys themselves, in standards based on json are always ASCII (i.e. same bytes as Unicode).  
 
