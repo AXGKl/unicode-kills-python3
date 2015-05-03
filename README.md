@@ -1,3 +1,4 @@
+
 *Before putting together arguments against Python3's string type, here a longish explanation why Py2's bytes str type is what we want*
 
 # Python2 With A Working DefaultEncoding: We Have It All. 
@@ -459,8 +460,9 @@ But only then.
 
 
 
+misc links:
 
-
+ German: Py3 the future? http://www.sax.de/unix-stammtisch/docs/2014-02/py23.pdf
 
 
 
