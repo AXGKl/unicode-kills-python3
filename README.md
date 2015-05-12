@@ -214,7 +214,7 @@ The root cause of the problem is a **software engineering mistake** with terribl
 
 ### Bytes Without a Meaning: The IBM/Microsoft Codepage [Fubar][fubar] - And Its Relevance Today ###
 
-Since many (especially younger developers) don't even understand the problem any more, i.e. why the switch _could_ be harmful, here some background information about
+Since many (especially younger developers) don't even understand the problem any more, i.e. why the switch _could_ be harmful, here some background information about it.
 
 ### How Global Standards Work ###
 
