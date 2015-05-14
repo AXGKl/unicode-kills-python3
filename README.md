@@ -414,7 +414,9 @@ That in turn, to stay within the picture, lets unicode sandwiches taste a little
 
 And there is **a lot** dynamic business logic involved within that area - and this is where Python really really shines, especially when defining that logic together with domain specific experts - see also the next point. 
 
-**Lets hope the recent [good news](http://legacy.python.org/dev/peps/pep-0461/) about 3.5 do mean that Python gets back to were it already was with version 2 & and a working default encoding: A perfect language to parse and process the [communication standards][rfcs] of this world.**
+Lets hope the recent [good news](http://legacy.python.org/dev/peps/pep-0461/) about 3.5 do mean that Python gets back to were it already was with version 2 & and a working default encoding:
+
+**A perfect language to parse and process the [communication standards][rfcs] of this world.**
 
 
 ![lbbrown][linebreakbrown]
@@ -442,32 +444,32 @@ Did he carefully check the _return types_ of all third party libs in use? Many a
 Tip for all users who decide to go this path: Besides stuffing non ASCII data into unit tests, wherever the use case involves data potentially from and for humans, I recommend also to set the default encoding, while testing, to [this codec][ascic] and check the warnings...
 
 --- 
+
 ![antigravity][antigravity]
+(source[armin1])
 
 *Some users don't want this, even if they could - [Java][java] is then the better language, yet [more explicit][java]*
 
 [Here is a good read][pissed] regarding how the 'do it yourself' tip is perceived by _many_ end users, incl. myself, especially after investigating about the next to zero risks of the setdefaultencoding switch. 
 
 
-Many end users like myself deliberately picked Python, since it beats any other language, regarding its low 'noise', purity and expressive power, which leads to ultimate _simplicity_, in the best possible meaning of this word (btw: there is also Zen rule number 3). 
+Many end users like myself deliberately picked Python, since it beats any other language, regarding its low 'noise', purity and expressive power, which leads to ultimate _simplicity_, in the best possible meaning of this word (see Zen rule number 3). 
 
 THIS is the reason why many people chose and got happy with the language, imho - for any other computing requirement there are meanwhile better suited ones.
 
-Example?
-
 Only in Python, once a fitting custom API is built within a project, you can take smart problem owners and go with them step by step through the code, finetuning what they want. It is still very satisfying to see how excited they get when they see how transparent their problems can be addressed, compared to other languages.
-
 
 We should not throw this all away, because of problems which are not present any more - and never were in most computing domains.
 
-Experts should stop irritating and alienating users when they help themselves with this simple switch, then getting a next to perfect language.
+**Experts should stop irritating and alienating users when they help themselves with fixing the defaultencoding, then getting back the Python language behaving in the way, which once led to its massive success (import antigravity)**
 
-I think its time to realize what we have with the Python 2 way of working with text and continue lobby for it in Py3 (there are good things [happening](https://mail.python.org/pipermail/python-dev/2014-March/133621.html) recently), using unicode 'only' as a then appreciated feature - when needed.
+
+PS: Py3 is [adding back]((https://mail.python.org/pipermail/python-dev/2014-March/133621.html) features of Py2 gradually - but the core problem, decoding every text w/o need, remains still in. So we should not stop lobby for the Py2 way of working with text and continue lobby for it: Using unicode semantics only as a function, an appreciated feature - when needed.
 But only then.   
 
 
 
-misc links:
+Misc links:
 
  German: Py3 the future? http://www.sax.de/unix-stammtisch/docs/2014-02/py23.pdf
 
