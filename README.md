@@ -6,9 +6,9 @@
 - [setdefaultencoding('utf-8'): risk free](#python2-with-a-working-defaultencoding-we-have-it-all)
 - [History: why Py2's default is ASCII](#analyzing-the-rejection-of-the-setdefaultencoding-switch)
 - [Why the unicode sandwich is a bad idea for most appps](#setdefaultencodingutf-8-assessment-of-alternatives)
-- [Python2's str(): Perfect & pythonic in modern server text processing](#are-explict-manual-conversions-what-python-users-expect)
+- [Python2's str(): Perfect & pythonic in modern text processing](#are-explict-manual-conversions-what-python-users-expect)
 
-
+A short presentation about the topic: [how-to-handle-text-in-python-m2miot-industrial-server-applications](https://axchange.axiros.com/multimedia/unicode/unicode_in_axiros/reveal.js/index.html#/how-to-handle-text-in-python-m2miot-industrial-server-applications)
 
 # Python2 With A Working DefaultEncoding: We Have It All. 
 
