@@ -1,6 +1,6 @@
 ### About
 
-Disclaimer: The title of this repo is based on my subjective opinion and chosen provocative - in order to motivate the reader digging into the arguments. The topic *is* important and the reader, in order to build his own opinion, is required to invest significant time.
+*Disclaimer: The title of this repo is based on my subjective opinion and chosen provocative - in order to motivate the reader digging into the arguments. The topic *is* important and the reader, in order to build his own opinion, is required to invest significant time.*
 
 
 - [setdefaultencoding('utf-8'): risk free](#python2-with-a-working-defaultencoding-we-have-it-all)
