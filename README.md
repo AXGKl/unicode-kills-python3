@@ -1,4 +1,7 @@
-### TOC
+### About
+
+Disclaimer: The title of this repo is based on my subjective opinion and chosen provocative - in order to motivate the reader digging into the arguments. The problem *is* severe and the reader, in order to build his own opinion, is required to invest significant time.
+
 
 - [setdefaultencoding('utf-8'): risk free](#python2-with-a-working-defaultencoding-we-have-it-all)
 - [history: why official python rejects it](#analyzing-the-rejection-of-the-setdefaultencoding-switch)
@@ -414,7 +417,7 @@ That in turn, to stay within the picture, lets unicode sandwiches taste a little
 
 And there is **a lot** dynamic business logic involved within that area - and this is where Python really really shines, especially when defining that logic together with domain specific experts - see also the next point. 
 
-**Lets hope the recent good news about 3.5 do mean that Python gets back to were it already was with version 2 & and a decent default encoding: A perfect language to parse and process the [communication standards][rfcs] of this world.**
+**Lets hope the recent [good news](http://legacy.python.org/dev/peps/pep-0461/) about 3.5 do mean that Python gets back to were it already was with version 2 & and a decent default encoding: A perfect language to parse and process the [communication standards][rfcs] of this world.**
 
 
 ![lbbrown][linebreakbrown]
