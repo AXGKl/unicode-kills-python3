@@ -323,7 +323,7 @@ Not at all natural it is to derive from this, that the 'meat' in the sandwich MU
 
 **Novices** in Py2 start with juggling bytestrings around and they get a long long way with this, longer than in a unicode sandwich where their first piped non ascii print out crashes with funny error messages.  
 
-Also quite some undisputed Python **Experts** seem to prefer to work with bytestrings. Most prominent [Armin Ronacher][armin_1], the whole Zope/Plone community is another, [Mercurial][mercurial] another. Even Ned Batchelder [does face situations][ned]...
+Also quite some undisputed Python **Experts** seem to prefer to work with bytestrings. Most prominent [Armin Ronacher][armin1], the whole Zope/Plone community is another, [Mercurial][mercurial] another. Even Ned Batchelder [does face situations][ned]...
 
 I'm NOT an expert - but the Python servers my company sells get bombarded by mgmt. stacks of currently some 30 million little devices around the globe. It would be just plain *wrong* to convert all that traffic to and from unicode before/after consolidating it, given "advantages" like...
 
@@ -711,10 +711,7 @@ https://fedoraproject.org/wiki/Features/PythonEncodingUsesSystemLocale
 [unipic]: https://raw.githubusercontent.com/axiros/unicode_in_axiros/master/images/krQhC.png
 
 
-[stbtdr]: https://raw.githubusercontent.com/axiros/unicode_in_axiros/master/images/4VTGj.png
-
-
- [stbtr]: https://raw.githubusercontent.com/axiros/unicode_in_axiros/master/images/rJyw2.png
+[stbtr]: https://raw.githubusercontent.com/axiros/unicode_in_axiros/master/images/4VTGj.png
 
 
  [antigravity]: https://raw.githubusercontent.com/axiros/unicode_in_axiros/master/images/iopy3.png
