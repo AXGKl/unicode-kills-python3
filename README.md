@@ -705,19 +705,19 @@ https://fedoraproject.org/wiki/Features/PythonEncodingUsesSystemLocale
 
 
 
-[linebreakbrown]: http://raw.githubusercontent.com/axiros/unicode_in_axiros/master/images/FFxEA.jpg
+[linebreakbrown]: https://raw.githubusercontent.com/axiros/unicode_in_axiros/master/images/FFxEA.jpg
 
 
-[unipic]: http://raw.githubusercontent.com/axiros/unicode_in_axiros/master/images/krQhC.png
+[unipic]: https://raw.githubusercontent.com/axiros/unicode_in_axiros/master/images/krQhC.png
 
 
-[stbtdr]: http://raw.githubusercontent.com/axiros/unicode_in_axiros/master/images/4VTGj.png
+[stbtdr]: https://raw.githubusercontent.com/axiros/unicode_in_axiros/master/images/4VTGj.png
 
 
- [stbtr]: http://raw.githubusercontent.com/axiros/unicode_in_axiros/master/images/rJyw2.png
+ [stbtr]: https://raw.githubusercontent.com/axiros/unicode_in_axiros/master/images/rJyw2.png
 
 
- [antigravity]: http://raw.githubusercontent.com/axiros/unicode_in_axiros/master/images/iopy3.png
+ [antigravity]: https://raw.githubusercontent.com/axiros/unicode_in_axiros/master/images/iopy3.png
 
 
 
