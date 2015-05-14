@@ -414,7 +414,7 @@ That in turn, to stay within the picture, lets unicode sandwiches taste a little
 
 And there is **a lot** dynamic business logic involved within that area - and this is where Python really really shines, especially when defining that logic together with domain specific experts - see also the next point. 
 
-**Lets hope the recent [good news](http://legacy.python.org/dev/peps/pep-0461/) about 3.5 do mean that Python gets back to were it already was with version 2 & and a decent default encoding: A perfect language to parse and process the [communication standards][rfcs] of this world.**
+**Lets hope the recent [good news](http://legacy.python.org/dev/peps/pep-0461/) about 3.5 do mean that Python gets back to were it already was with version 2 & and a working default encoding: A perfect language to parse and process the [communication standards][rfcs] of this world.**
 
 
 ![lbbrown][linebreakbrown]
