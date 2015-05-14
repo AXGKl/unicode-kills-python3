@@ -442,6 +442,7 @@ Did he carefully check the _return types_ of all third party libs in use? Many a
 Tip for all users who decide to go this path: Besides stuffing non ASCII data into unit tests, wherever the use case involves data potentially from and for humans, I recommend also to set the default encoding, while testing, to [this codec][ascic] and check the warnings...
 
 --- 
+![antigravity][antigravity]
 
 *Some users don't want this, even if they could - [Java][java] is then the better language, yet [more explicit][java]*
 
@@ -463,9 +464,6 @@ Experts should stop irritating and alienating users when they help themselves wi
 
 I think its time to realize what we have with the Python 2 way of working with text and continue lobby for it in Py3 (there are good things [happening](https://mail.python.org/pipermail/python-dev/2014-March/133621.html) recently), using unicode 'only' as a then appreciated feature - when needed.
 But only then.   
-
-
-**import antigravity**
 
 
 
@@ -600,20 +598,6 @@ https://fedoraproject.org/wiki/Features/PythonEncodingUsesSystemLocale
 
 [fassen]: http://blog.startifact.com/posts/older/changing-the-python-default-encoding-considered-harmful.html
 
-[linebreakbrown]: http://i.stack.imgur.com/FFxEA.jpg
-
-
-[unipic]: http://i.stack.imgur.com/krQhC.png
-
-
-[stbtdr]: http://i.stack.imgur.com/4VTGj.png
-
-
- [stbtr]: http://i.stack.imgur.com/rJyw2.png
-
-
- [antigravity]: http://i.stack.imgur.com/vN3VT.png
-
 
 
 [uni2]: http://carl.sandiego.edu/bus188/osi_model.htm
@@ -719,10 +703,22 @@ https://fedoraproject.org/wiki/Features/PythonEncodingUsesSystemLocale
 
 [fassen]: http://blog.startifact.com/posts/older/changing-the-python-default-encoding-considered-harmful.html
 
-[linebreakbrown]: http://i.stack.imgur.com/FFxEA.jpg
 
 
-[unipic]: http://i.stack.imgur.com/krQhC.png
+[linebreakbrown]: http://raw.githubusercontent.com/axiros/unicode_in_axiros/master/images/FFxEA.jpg
 
 
-[stbtr]: http://i.stack.imgur.com/4VTGj.png
+[unipic]: http://raw.githubusercontent.com/axiros/unicode_in_axiros/master/images/krQhC.png
+
+
+[stbtdr]: http://raw.githubusercontent.com/axiros/unicode_in_axiros/master/images/4VTGj.png
+
+
+ [stbtr]: http://raw.githubusercontent.com/axiros/unicode_in_axiros/master/images/rJyw2.png
+
+
+ [antigravity]: http://raw.githubusercontent.com/axiros/unicode_in_axiros/master/images/iopy3.png
+
+
+
+
