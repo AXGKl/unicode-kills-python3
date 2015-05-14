@@ -1,15 +1,12 @@
 ### About
 
-Disclaimer: The title of this repo is based on my subjective opinion and chosen provocative - in order to motivate the reader digging into the arguments. The problem *is* severe and the reader, in order to build his own opinion, is required to invest significant time.
+Disclaimer: The title of this repo is based on my subjective opinion and chosen provocative - in order to motivate the reader digging into the arguments. The topic *is* important and the reader, in order to build his own opinion, is required to invest significant time.
 
 
 - [setdefaultencoding('utf-8'): risk free](#python2-with-a-working-defaultencoding-we-have-it-all)
 - [history: why official python rejects it](#analyzing-the-rejection-of-the-setdefaultencoding-switch)
 - [why the unicode sandwich is a bad idea for most appps](#setdefaultencodingutf-8-assessment-of-alternatives)
 - [python2 the perfect language for modern text processing](#are-explict-manual-conversions-what-python-users-expect)
-
-
-*Before putting together arguments against Python3's string type, here a longish explanation why Py2's bytes str type is what we want*
 
 
 
