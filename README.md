@@ -1,5 +1,14 @@
+### TOC
+
+- [setdefaultencoding('utf-8'): risk free](#python2-with-a-working-defaultencoding-we-have-it-all)
+- [history: why official python rejects it](#analyzing-the-rejection-of-the-setdefaultencoding-switch)
+- [why the unicode sandwich is a bad idea for most appps](#setdefaultencodingutf-8-assessment-of-alternatives)
+- [python2 the perfect language for modern text processing](#are-explict-manual-conversions-what-python-users-expect)
+
 
 *Before putting together arguments against Python3's string type, here a longish explanation why Py2's bytes str type is what we want*
+
+
 
 # Python2 With A Working DefaultEncoding: We Have It All. 
 
