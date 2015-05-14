@@ -446,7 +446,7 @@ Tip for all users who decide to go this path: Besides stuffing non ASCII data in
 --- 
 
 ![antigravity][antigravity]
-(source[armin1])
+([source][armin1])
 
 *Some users don't want this, even if they could - [Java][java] is then the better language, yet [more explicit][java]*
 
@@ -464,7 +464,7 @@ We should not throw this all away, because of problems which are not present any
 **Experts should stop irritating and alienating users when they help themselves with fixing the defaultencoding, then getting back the Python language behaving in the way, which once led to its massive success (import antigravity)**
 
 
-PS: Py3 is [adding back]((https://mail.python.org/pipermail/python-dev/2014-March/133621.html) features of Py2 gradually - but the core problem, decoding every text w/o need, remains still in. So we should not stop lobby for the Py2 way of working with text and continue lobby for it: Using unicode semantics only as a function, an appreciated feature - when needed.
+PS: Py3 is [adding back](https://mail.python.org/pipermail/python-dev/2014-March/133621.html) features of Py2 gradually - but the core problem, decoding every text w/o need, remains still in. So we should not stop lobby for the Py2 way of working with tex: Using unicode semantics only as a function, an appreciated feature - when needed.
 But only then.   
 
 
