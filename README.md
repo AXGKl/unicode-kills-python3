@@ -51,7 +51,7 @@ transport.py
 ```
 ... and so on and so forth.
 
-Any I/O lib silently assumes UTF-8 encoding - and en/decodes accordingly w/o even a config option.
+Any I/O lib silently assumes UTF-8 encoding - and en/decodes accordingly, w/o even a config option, most of the time.
 
 > The victory of UTF-8, funnily, saved Python3.
  
