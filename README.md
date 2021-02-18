@@ -1,3 +1,69 @@
+### Meanwhile...
+
+2021 meanwhile and stumbling over my rants from back then I'll happily admit that no, Python is NOT dead - it was not squeezed to death between a unicode sandwhich and turned into a noob language, not effective for serious work.
+
+What happened - was it all wrong? Where was I wrong?
+
+Well, this happended:
+
+```python
+2.redis$ ack 'utf-8'
+connection.py
+503:                 socket_type=0, retry_on_timeout=False, encoding='utf-8',
+877:                 socket_timeout=None, encoding='utf-8',
+1217:            encoding=kwargs.get('encoding', 'utf-8'),
+
+client.py
+704:                 encoding='utf-8', encoding_errors='strict',
+_compat.py
+142:        return x if isinstance(x, str) else x.encode('utf-8', 'replace')
+168:        return x if isinstance(x, str) else x.decode('utf-8', 'replace')
+172:            value = value.decode('utf-8', 'replace')
+
+172:            value = value.decode('utf-8', 'replace')
+
+
+2.redis$ cd ../elasticsearch
+2.elasticsearch$ ack 'utf-8'
+connection/http_urllib3.py
+215:            raw_data = response.data.decode("utf-8")
+
+connection/base.py
+59:                    binascii.a2b_base64(cloud_id.encode("utf-8"))
+60:                    .decode("utf-8")
+161:        # body has already been serialized to utf-8, deserialize it for logging
+165:                body = body.decode("utf-8", "ignore")
+201:        # body has already been serialized to utf-8, deserialize it for logging
+205:                body = body.decode("utf-8", "ignore")
+
+helpers/actions.py
+64:        cur_size = len(action.encode("utf-8")) + 1
+68:            cur_size += len(data.encode("utf-8")) + 1
+
+
+client/utils.py
+34:    # encode strings to utf-8
+37:            return value.encode("utf-8")
+39:            return value.encode("utf-8")
+transport.py
+330:                body = body.encode("utf-8", "surrogatepass")
+
+```
+... and so on and so forth.
+
+Any I/O lib silently assumes UTF-8 encoding - and en/decodes accordingly w/o even a config option.
+
+> The victory of UTF-8, funnily, saved Python3.
+ 
+Are these explicit encode / decode orgies pythonic? Arguable not. But at least now even noobs at level 1 do now know the difference between bytes and text.
+
+So yeah, Python, with all the support for bytes as we had in Py2 for str, latest since 3.6, remains a bearable language.
+For greenfield not much worse in convenience than a Python 2.8, 2.9 in a parallel universe, where they built in all the new goodies into Python2 with a defaultencoding at utf-8. That would have saved the Industry 10 years of conversion work of old code bases but so bit it - it could have been worse.
+
+I leave this repo full of rants for your amusement.
+
+------------------
+
 ### About
 
 *Disclaimer: The title of this repo is based on my subjective opinion and chosen provocative - in order to motivate the reader digging into the arguments.* *The topic IS important and the reader, in order to build his own opinion, is required to invest significant time.*
