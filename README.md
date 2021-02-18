@@ -60,7 +60,7 @@ Are these explicit encode / decode orgies pythonic? Arguable not. But at least n
 So yeah, Python, with all the support for bytes as we had in Py2 for str, latest since 3.6, remains a bearable language.
 For greenfield not much worse in convenience than a Python 2.8, 2.9 in a parallel universe, where they built in all the new goodies into Python2 with a defaultencoding at utf-8. That would have saved the Industry 10 years of conversion work of old code bases but so bit it - it could have been worse.
 
-I leave this repo full of rants for your amusement.
+I leave this repo full of rants for your amusement: Put yourself back into the ancient times of a non functional (you'll see why) but released Python < 3.5 and read on... 
 
 ------------------
 
